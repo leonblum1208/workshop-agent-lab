@@ -190,6 +190,17 @@ The files are plain Markdown. Open them and inspect how little structure is need
 
 Write the first skill yourself. This is the moment where you learn what a skill actually is.
 
+Skills are best for repeatable instructions that should only appear when relevant.
+They are not global behavior rules. Global rules belong in `.github/copilot-instructions.md`.
+
+Good skills are:
+
+- **narrow**: one job, not five
+- **easy to trigger**: the description says when to use it
+- **specific**: clear steps, rules, and output format
+- **safe**: no hidden secrets, no unnecessary command execution
+- **testable**: you can ask Copilot to use it and judge the result
+
 Create a new folder and file:
 
 ```text
@@ -219,10 +230,18 @@ Use this skill when ...
 
 Rules:
 
-- ...
-- ...
-- ...
+- Use exactly five bullets.
+- Use plain business language.
+- Keep each bullet under 20 words.
 ```
+
+Skill-writing tips:
+
+- Put the most important behavior in the `description`; Copilot uses it to decide when the skill is relevant.
+- Use lowercase names with hyphens, for example `concise-summarizer`.
+- Write instructions as if you were briefing a smart colleague.
+- Add one example prompt so future users know how to invoke it.
+- Avoid vague rules like "be good" or "be accurate." Say what accuracy means.
 
 After you wrote it, ask Copilot to review it:
 
@@ -233,13 +252,13 @@ Would you follow the rules correctly?
 Suggest improvements, but do not edit the file yet.
 ```
 
-Restart Copilot CLI after creating skills or agents so they load reliably:
+Reload skills after creating or changing them:
 
 ```text
-/exit
+/skills reload
 ```
 
-Then:
+If that does not show the new skill, restart Copilot:
 
 ```bash
 copilot
@@ -257,9 +276,27 @@ Checkpoint:
 Use my new skill on README.md and show me what it does.
 ```
 
+Then improve the skill once:
+
+```text
+The output was close, but I want it to be more useful for business stakeholders.
+Suggest three improvements to the skill instructions before I edit them.
+```
+
 ## 5. Create Your First Agent
 
 Create an agent either through the CLI or by writing a file.
+
+Agents are best for specialist roles. A good agent has a clear job, clear boundaries, and a clear moment when it should be used.
+
+Use an agent when you want:
+
+- a named role, such as `event-scout` or `evidence-reviewer`
+- a separate context window for a focused subtask
+- a repeatable way of handling a larger workflow step
+- tool limits, for example read-only review versus editing
+
+Avoid creating an agent when a short skill would be enough.
 
 Friendly CLI flow:
 
@@ -287,20 +324,52 @@ templates/agent-template.agent.md
 
 Both flows are valid. The CLI flow is friendlier. The file flow makes the structure visible and easier to version.
 
-If you want Copilot to create the file for you, paste:
+Agent-writing tips:
+
+- Choose a short lowercase name with hyphens.
+- Make the `description` concrete. This helps Copilot decide when to use the agent.
+- Give the agent one main responsibility.
+- Tell it what not to do.
+- Tell it what output to return.
+- Start with fewer tools. Add more only when the agent needs them.
+
+For example:
 
 ```text
-Create a new project agent called evidence-reviewer.
-It should review a report for unsupported claims, missing sources,
-and overconfident wording.
-Put it in .github/agents/evidence-reviewer.agent.md.
-Keep it beginner-friendly.
+---
+name: evidence-reviewer
+description: Reviews demand-signal reports for unsupported claims,
+missing sources, and overconfident wording.
+tools: ["read", "search"]
+---
+
+You are an evidence reviewer.
+
+Check for:
+
+- unsupported claims
+- missing sources
+- unclear date ranges
+- overconfident language
+
+Return:
+
+- issues to fix
+- safer wording
+- final risk level: low, medium, or high
 ```
 
 Checkpoint:
 
 ```text
 Use my new agent to complete a small task. Then explain which instructions it followed.
+```
+
+Then test whether the agent is easy to trigger:
+
+```text
+I have a short report draft. Which agent in this repo should review it,
+and why?
 ```
 
 ## 6. Understand Orchestration
@@ -325,6 +394,13 @@ Useful commands:
 /env      inspect loaded instructions, skills, agents, and tools
 ```
 
+Important idea:
+
+The lead Copilot session does not have to do everything itself.
+It can delegate focused work to specialist agents.
+Those agents can use skills when their descriptions match the task.
+This keeps the lead session focused on planning, judgment, and final synthesis.
+
 For the final challenge, a useful team could be:
 
 - one lead agent that coordinates the investigation
@@ -334,6 +410,47 @@ For the final challenge, a useful team could be:
 - skills for specific data sources or report formats
 
 You decide the actual design.
+
+Good orchestration usually has four parts:
+
+1. **Planner**: decides what needs to be investigated.
+2. **Collectors**: gather evidence from public sources.
+3. **Reviewer**: challenges weak or unsupported claims.
+4. **Writer**: creates a clear report for humans.
+
+For this workshop, start small:
+
+```text
+lead agent
+  -> event scout
+  -> evidence reviewer
+  -> report writer skill
+```
+
+Only add more agents when the work is truly different.
+
+Orchestration prompts should be explicit:
+
+```text
+Use the lead agent to coordinate this task.
+Delegate event discovery to the event-scout agent.
+Use the evidence-reviewer agent before writing the final report.
+Save the final report under outputs/.
+```
+
+Common mistakes:
+
+- creating many agents with overlapping jobs
+- writing vague descriptions, so Copilot cannot choose the right agent
+- skipping the reviewer step
+- letting the report make stronger claims than the evidence supports
+- adding API keys or secrets to files
+
+Useful references:
+
+- [GitHub: adding agent skills](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills)
+- [GitHub: creating custom agents](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-custom-agents-for-cli)
+- [GitHub: comparing customization features](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/comparing-cli-features)
 
 ## 7. Explore Data Sources Yourself
 
