@@ -68,6 +68,9 @@ Letting one lead agent coordinate smaller specialist agents and combine their re
 **Evidence**
 Public data, links, API results, or saved files that support a claim.
 
+**Evidence trail**
+A readable folder of files showing what the system fetched, summarized, and used for a report.
+
 **Grounded report**
 A report that clearly says what was observed, what is assumed, and what is uncertain.
 
@@ -128,7 +131,11 @@ By the end, your repo should contain:
     multiple-skill-folders/
       SKILL.md
 outputs/
-  event-demand-report.md
+  runs/
+    2026-06-09-1430-berlin-events/
+      README.md
+      evidence/
+      event-demand-report.md
 ```
 
 Your final report should answer:
@@ -505,8 +512,47 @@ Orchestration prompts should be explicit:
 Use the lead agent to coordinate this task.
 Delegate event discovery to the event-scout agent.
 Use the evidence-reviewer agent before writing the final report.
-Save the final report under outputs/.
+Save all outputs in a timestamped folder under outputs/runs/.
 ```
+
+### Evidence Trail
+
+Every agent that retrieves data should leave a readable evidence trail.
+
+Create one timestamped folder per run:
+
+```text
+outputs/runs/YYYY-MM-DD-HHMM-short-description/
+```
+
+Example:
+
+```text
+outputs/runs/2026-06-09-1430-berlin-events/
+  README.md
+  evidence/
+    ticketmaster-berlin-summary.md
+    ticketmaster-berlin-raw.json
+    holidays-germany-summary.md
+  event-demand-report.md
+```
+
+The timestamped folder should be understandable for non-technical people.
+
+Include a `README.md` in each run folder with:
+
+- what question was investigated
+- which agents and skills were used
+- which data sources were queried
+- where to find the final report
+- known limitations
+
+Data-source agents should save:
+
+- a raw response when useful, usually `.json`
+- a short human-readable summary, usually `.md`
+- the query, source, date range, and time retrieved
+- empty or failed results too, so debugging is possible
 
 Common mistakes:
 
@@ -514,6 +560,7 @@ Common mistakes:
 - writing vague descriptions, so Copilot cannot choose the right agent
 - skipping the reviewer step
 - letting the report make stronger claims than the evidence supports
+- hiding data retrievals inside the final report only
 - adding API keys or secrets to files
 
 Useful references:
@@ -662,7 +709,9 @@ Recommended starting point:
 
 - **three to five skills**
 - **two to four agents**
-- one final report under `outputs/`
+- one timestamped run folder under `outputs/runs/`
+- one final report inside that run folder
+- readable evidence files inside that run folder
 
 For example, you might build:
 
@@ -698,7 +747,9 @@ At least:
 
 - create at least **two skills**
 - create at least **one custom agent**
-- generate a report under `outputs/`
+- generate a timestamped run folder under `outputs/runs/`
+- save data retrievals and summaries inside that run folder
+- generate a report inside that run folder
 - include evidence, confidence, and limitations
 
 Experiment with questions like:
@@ -714,7 +765,8 @@ Example prompt:
 > Use our agents and skills to find upcoming public events in Europe
 > in the next 90 days that may deserve attention from an airline demand analyst.
 > Focus on events that could plausibly affect flights booked or taken.
-> Save a grounded markdown report to `outputs/event-demand-report.md`.
+> Create a timestamped run folder under `outputs/runs/`.
+> Save readable evidence files and a grounded markdown report there.
 > Include sources, confidence, and limitations.
 
 If you are not sure what to build, start with this:
