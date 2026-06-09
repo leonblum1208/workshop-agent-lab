@@ -193,7 +193,10 @@ You have two options. The easiest path is to ask Copilot to create the skill for
 In Copilot CLI, paste:
 
 ```text
-Create a new skill called concise-summarizer. It should help summarize long findings into five business-readable bullets. Put it under .github/skills/concise-summarizer/SKILL.md. Keep it beginner-friendly.
+Create a new skill called concise-summarizer.
+It should help summarize long findings into five business-readable bullets.
+Put it under .github/skills/concise-summarizer/SKILL.md.
+Keep it beginner-friendly.
 ```
 
 Then ask:
@@ -271,7 +274,11 @@ Both flows are valid. The CLI flow is friendlier. The file flow makes the struct
 If you want Copilot to create the file for you, paste:
 
 ```text
-Create a new project agent called evidence-reviewer. It should review a report for unsupported claims, missing sources, and overconfident wording. Put it in .github/agents/evidence-reviewer.agent.md and keep it beginner-friendly.
+Create a new project agent called evidence-reviewer.
+It should review a report for unsupported claims, missing sources,
+and overconfident wording.
+Put it in .github/agents/evidence-reviewer.agent.md.
+Keep it beginner-friendly.
 ```
 
 Checkpoint:
@@ -333,22 +340,32 @@ Look for sources with:
 Ask Copilot to help, but make it show sources and tradeoffs:
 
 ```text
-Help me find public data sources for upcoming European events that may affect flight demand. Prioritize sources I can query without authentication. Give me source, signal type, access method, and limitation.
+Help me find public data sources for upcoming European events
+that may affect flight demand.
+Prioritize sources I can query without authentication.
+Give me source, signal type, access method, and limitation.
 ```
 
 Do not build yet. First compare options with your group.
 
 ## 8. Sources We Found Useful
 
-After your own exploration, compare against these.
+After your own exploration, compare against these:
 
-| Source | Use |
-| --- | --- |
-| Ticketmaster Discovery API | Upcoming concerts, sport, arts, venues, and city-based events. Strong signal, but API-key access may be needed. |
-| Wikimedia Pageviews | Historical and current attention signal for artists, events, cities, teams, and festivals. No auth. |
-| Nager.Date | Public holidays by country and year. No auth. |
-| Open-Meteo | Weather forecast and historical weather context. No auth. |
-| GDELT | News/event signal for unusual public attention, disruptions, protests, announcements, or city-level topics. No auth but noisy and rate-limited. |
+**Ticketmaster Discovery API**
+Upcoming concerts, sport, arts, venues, and city-based events. Strong signal, but API-key access may be needed.
+
+**Wikimedia Pageviews**
+Historical and current attention signal for artists, events, cities, teams, and festivals. No auth.
+
+**Nager.Date**
+Public holidays by country and year. No auth.
+
+**Open-Meteo**
+Weather forecast and historical weather context. No auth.
+
+**GDELT**
+News/event signal for unusual public attention, disruptions, protests, announcements, or city-level topics. No auth but noisy and rate-limited.
 
 You do not need all five. Pick a small set and make it work.
 
@@ -386,7 +403,15 @@ macOS / Linux:
 CITY="Berlin"
 START="2026-06-10"
 END="2026-09-10"
-curl -sS "https://app.ticketmaster.com/discovery/v2/events.json?apikey=${TICKETMASTER_API_KEY}&city=${CITY}&startDateTime=${START}T00:00:00Z&endDateTime=${END}T23:59:59Z&size=5&sort=date,asc"
+
+curl -sS "https://app.ticketmaster.com/discovery/v2/events.json" \
+  --get \
+  --data-urlencode "apikey=${TICKETMASTER_API_KEY}" \
+  --data-urlencode "city=${CITY}" \
+  --data-urlencode "startDateTime=${START}T00:00:00Z" \
+  --data-urlencode "endDateTime=${END}T23:59:59Z" \
+  --data-urlencode "size=5" \
+  --data-urlencode "sort=date,asc"
 ```
 
 Windows PowerShell:
@@ -395,7 +420,19 @@ Windows PowerShell:
 $CITY = "Berlin"
 $START = "2026-06-10"
 $END = "2026-09-10"
-Invoke-RestMethod "https://app.ticketmaster.com/discovery/v2/events.json?apikey=$env:TICKETMASTER_API_KEY&city=$CITY&startDateTime=${START}T00:00:00Z&endDateTime=${END}T23:59:59Z&size=5&sort=date,asc"
+
+$params = @{
+  apikey = $env:TICKETMASTER_API_KEY
+  city = $CITY
+  startDateTime = "${START}T00:00:00Z"
+  endDateTime = "${END}T23:59:59Z"
+  size = 5
+  sort = "date,asc"
+}
+
+Invoke-RestMethod `
+  -Uri "https://app.ticketmaster.com/discovery/v2/events.json" `
+  -Body $params
 ```
 
 If this takes too long during the workshop, skip it. Your system should still work with no-auth sources and clearly state that Ticketmaster was not used.
@@ -403,7 +440,9 @@ If this takes too long during the workshop, skip it. Your system should still wo
 Non-developer shortcut:
 
 ```text
-I have a Ticketmaster API key stored as TICKETMASTER_API_KEY. Help me test whether it works for Berlin events in the next 90 days. Explain each command before running it.
+I have a Ticketmaster API key stored as TICKETMASTER_API_KEY.
+Help me test whether it works for Berlin events in the next 90 days.
+Explain each command before running it.
 ```
 
 ## 9. Final Challenge
@@ -435,13 +474,19 @@ Suggested agents:
 Example prompt:
 
 ```text
-Use our agents and skills to find upcoming public events in Europe in the next 90 days that may deserve attention from an airline demand analyst. Focus on events that could plausibly affect flights booked or taken. Save a grounded markdown report to outputs/event-demand-report.md. Include sources, confidence, and limitations.
+Use our agents and skills to find upcoming public events in Europe
+in the next 90 days that may deserve attention from an airline demand analyst.
+Focus on events that could plausibly affect flights booked or taken.
+Save a grounded markdown report to outputs/event-demand-report.md.
+Include sources, confidence, and limitations.
 ```
 
 If you are not sure what to build, start with this:
 
 ```text
-Help our group design a simple agentic system for the final challenge. We want one lead agent and two skills. Ask us three short questions, then create the first draft files.
+Help our group design a simple agentic system for the final challenge.
+We want one lead agent and two skills.
+Ask us three short questions, then create the first draft files.
 ```
 
 If your team is faster, extend the system:
