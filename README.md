@@ -13,6 +13,10 @@ You will not start by writing an agent framework. You will build with Copilot CL
 
 The README is the main guide. Move through it at your own pace.
 
+## License
+
+This workshop material is released under the MIT License. See [LICENSE](LICENSE).
+
 ## How Technical Is This?
 
 You do not need to be a developer to participate.
