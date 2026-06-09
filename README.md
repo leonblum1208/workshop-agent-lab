@@ -2,7 +2,9 @@
 
 Welcome. In this lab you will build an agentic system with GitHub Copilot CLI.
 
-The final goal is a grounded report about future public events in Europe that could create unusual flight demand. The system should find signals, evaluate them, and explain what a human analyst should look at next.
+The final goal is a grounded report about future public events
+in Europe that could create unusual flight demand.
+The system should find signals, evaluate them, and explain what a human analyst should look at next.
 
 You will not start by writing an agent framework. You will build with Copilot CLI-native building blocks:
 
@@ -22,7 +24,9 @@ Aim for a mix of:
 - people comfortable with terminals, files, or APIs
 - people closer to analytics, business, product, or domain questions
 
-This lab works best when one person can help with setup while others challenge the business relevance, data quality, and report wording. You are building an agentic system, not just a technical demo.
+This lab works best when one person can help with setup while others
+challenge the business relevance, data quality, and report wording.
+You are building an agentic system, not just a technical demo.
 
 ## License
 
@@ -32,7 +36,8 @@ This workshop material is released under the MIT License. See [LICENSE](LICENSE)
 
 You do not need to be a developer to participate.
 
-You will use a terminal, but most steps can be done by asking Copilot CLI to create or edit files for you. If terminal commands are unfamiliar, work in pairs and copy the commands exactly.
+You will use a terminal, but most steps can be done by asking Copilot CLI to create or edit files for you.
+If terminal commands are unfamiliar, work in pairs and copy the commands exactly.
 
 Use this rule of thumb:
 
@@ -40,18 +45,28 @@ Use this rule of thumb:
 - **Yellow path**: edit Markdown files by hand if you are comfortable.
 - **Red path**: write code only if your team wants to go further.
 
-In this lab, Markdown files are just text files. Skills and agents are mostly structured text, not software engineering.
+In this lab, Markdown files are just text files.
+Skills and agents are mostly structured text, not software engineering.
 
 ## Tiny Glossary
 
-| Term | Meaning in this lab |
-| --- | --- |
-| Copilot CLI | The tool you chat with in the terminal. It can read files, create files, run commands, and use agents. |
-| Skill | Reusable instructions for doing one thing well, for example "query pageviews" or "write a grounded report." |
-| Agent | A named specialist role, for example "event scout" or "evidence reviewer." |
-| Orchestration | Letting one lead agent coordinate smaller specialist agents and combine their results. |
-| Evidence | Public data, links, API results, or saved files that support a claim. |
-| Grounded report | A report that clearly says what was observed, what is assumed, and what is uncertain. |
+**Copilot CLI**
+The tool you chat with in the terminal. It can read files, create files, run commands, and use agents.
+
+**Skill**
+Reusable instructions for doing one thing well, for example "query pageviews" or "write a grounded report."
+
+**Agent**
+A named specialist role, for example "event scout" or "evidence reviewer."
+
+**Orchestration**
+Letting one lead agent coordinate smaller specialist agents and combine their results.
+
+**Evidence**
+Public data, links, API results, or saved files that support a claim.
+
+**Grounded report**
+A report that clearly says what was observed, what is assumed, and what is uncertain.
 
 ## What You Will Build
 
@@ -70,9 +85,8 @@ outputs/
 
 Your final report should answer:
 
-```text
-Which upcoming public events in Europe should an airline analyst look at because they may affect flights booked or taken?
-```
+> Which upcoming public events in Europe should an airline analyst look at
+> because they may affect flights booked or taken?
 
 Important: public data can suggest demand signals. It does not prove future bookings.
 
@@ -80,15 +94,13 @@ Important: public data can suggest demand signals. It does not prove future book
 
 Use this as a guide, not a rule.
 
-| Time | Focus |
-| --- | --- |
-| 0:00-0:30 | Start Copilot CLI and play with the warm-up examples |
-| 0:30-1:00 | Learn skills and create your first own skill |
-| 1:00-1:45 | Learn agents and create your first own agent |
-| 1:45-2:30 | Explore public data sources yourself |
-| 2:30-3:30 | Build skills and agents for the event-demand challenge |
-| 3:30-4:00 | Generate, review, and improve the final report |
-| 4:00+ | Add another agent, HTML output, or a use case from your own work |
+- **0:00-0:30**: Start Copilot CLI and play with the warm-up examples.
+- **0:30-1:00**: Learn skills and create your first own skill.
+- **1:00-1:45**: Learn agents and create your first own agent.
+- **1:45-2:30**: Explore public data sources yourself.
+- **2:30-3:30**: Build skills and agents for the event-demand challenge.
+- **3:30-4:00**: Generate, review, and improve the final report.
+- **4:00+**: Add another agent, HTML output, or a use case from your own work.
 
 ## 1. Start Copilot CLI
 
@@ -112,7 +124,8 @@ Check that Copilot CLI is installed:
 copilot --version
 ```
 
-If you see `command not found` or a similar error, stop here and ask a facilitator. Do not spend workshop time debugging installation alone.
+If you see `command not found` or a similar error, stop here and ask a facilitator.
+Do not spend workshop time debugging installation alone.
 
 If this works, start Copilot:
 
@@ -161,10 +174,13 @@ $env:COPILOT_MODEL = "<MODEL_NAME>"
 Then test:
 
 ```bash
-copilot -p "Reply with exactly READY" --allow-all-tools --silent
+copilot -p "Reply with exactly READY" \
+  --allow-all-tools \
+  --silent
 ```
 
-If you are on a managed laptop and something fails, work with a partner or ask a facilitator. The lab is designed so teams can share one working setup.
+If you are on a managed laptop and something fails, work with a partner or ask a facilitator.
+The lab is designed so teams can share one working setup.
 
 ## 3. Warm-Up: Skill And Agent
 
@@ -179,15 +195,11 @@ The example is intentionally not about aviation. It lets you learn the mechanics
 
 In Copilot CLI, try:
 
-```text
-Use the poem-writer skill to write a 6-line poem about an airport at sunrise.
-```
+> Use the poem-writer skill to write a 6-line poem about an airport at sunrise.
 
 Then try the agent:
 
-```text
-Use the poet agent to write a short poem about data analysts discovering a pattern.
-```
+> Use the poet agent to write a short poem about data analysts discovering a pattern.
 
 You can use agents and skills interchangeably in prompts:
 
@@ -256,12 +268,10 @@ Skill-writing tips:
 
 After you wrote it, ask Copilot to review it:
 
-```text
-Review my concise-summarizer skill.
-Is it clear when to use it?
-Would you follow the rules correctly?
-Suggest improvements, but do not edit the file yet.
-```
+> Review my concise-summarizer skill.
+> Is it clear when to use it?
+> Would you follow the rules correctly?
+> Suggest improvements, but do not edit the file yet.
 
 Reload skills after creating or changing them:
 
@@ -283,22 +293,19 @@ Check:
 
 Checkpoint:
 
-```text
-Use my new skill on README.md and show me what it does.
-```
+> Use my new skill on README.md and show me what it does.
 
 Then improve the skill once:
 
-```text
-The output was close, but I want it to be more useful for business stakeholders.
-Suggest three improvements to the skill instructions before I edit them.
-```
+> The output was close, but I want it to be more useful for business stakeholders.
+> Suggest three improvements to the skill instructions before I edit them.
 
 ## 5. Create Your First Agent
 
 Create an agent either through the CLI or by writing a file.
 
-Agents are best for specialist roles. A good agent has a clear job, clear boundaries, and a clear moment when it should be used.
+Agents are best for specialist roles.
+A good agent has a clear job, clear boundaries, and a clear moment when it should be used.
 
 Use an agent when you want:
 
@@ -333,7 +340,9 @@ You can copy:
 templates/agent-template.agent.md
 ```
 
-Both flows are valid. The CLI flow is friendlier. The file flow makes the structure visible and easier to version.
+Both flows are valid.
+The CLI flow is friendlier.
+The file flow makes the structure visible and easier to version.
 
 Agent-writing tips:
 
@@ -372,16 +381,11 @@ Return:
 
 Checkpoint:
 
-```text
-Use my new agent to complete a small task. Then explain which instructions it followed.
-```
+> Use my new agent to complete a small task. Then explain which instructions it followed.
 
 Then test whether the agent is easy to trigger:
 
-```text
-I have a short report draft. Which agent in this repo should review it,
-and why?
-```
+> I have a short report draft. Which agent in this repo should review it, and why?
 
 ## 6. Understand Orchestration
 
@@ -469,9 +473,7 @@ Before looking at suggestions, spend time searching for data sources.
 
 Your question:
 
-```text
-What public data could indicate that an upcoming event might affect flights booked or taken in Europe?
-```
+> What public data could indicate that an upcoming event might affect flights booked or taken in Europe?
 
 Look for sources with:
 
@@ -483,12 +485,9 @@ Look for sources with:
 
 Ask Copilot to help, but make it show sources and tradeoffs:
 
-```text
-Help me find public data sources for upcoming European events
-that may affect flight demand.
-Prioritize sources I can query without authentication.
-Give me source, signal type, access method, and limitation.
-```
+> Help me find public data sources for upcoming European events that may affect flight demand.
+> Prioritize sources I can query without authentication.
+> Give me source, signal type, access method, and limitation.
 
 Do not build yet. First compare options with your group.
 
@@ -497,7 +496,8 @@ Do not build yet. First compare options with your group.
 After your own exploration, compare against these:
 
 **Ticketmaster Discovery API**
-Upcoming concerts, sport, arts, venues, and city-based events. Strong signal, but API-key access may be needed.
+Upcoming concerts, sport, arts, venues, and city-based events.
+Strong signal, but API-key access may be needed.
 
 **Wikimedia Pageviews**
 Historical and current attention signal for artists, events, cities, teams, and festivals. No auth.
@@ -509,15 +509,20 @@ Public holidays by country and year. No auth.
 Weather forecast and historical weather context. No auth.
 
 **GDELT**
-News/event signal for unusual public attention, disruptions, protests, announcements, or city-level topics. No auth but noisy and rate-limited.
+News/event signal for unusual public attention, disruptions, protests, announcements, or city-level topics.
+No auth but noisy and rate-limited.
 
 You do not need all five. Pick a small set and make it work.
 
 ### Recommended: Ticketmaster API Key
 
-Ticketmaster is recommended for this challenge because it provides essential information about future public events: event names, dates, cities, venues, categories, and links.
+Ticketmaster is recommended for this challenge because it provides
+essential information about future public events:
+event names, dates, cities, venues, categories, and links.
 
-Try to get Ticketmaster working as a skill or tool in your group. One more technical colleague can create the developer app and share the key within the group for the workshop. Do not commit the key into any file.
+Try to get Ticketmaster working as a skill or tool in your group.
+One more technical colleague can create the developer app and share the key within the group for the workshop.
+Do not commit the key into any file.
 
 If Ticketmaster setup is blocked, continue with no-auth sources and state the limitation in your report.
 
@@ -582,21 +587,21 @@ Invoke-RestMethod `
   -Body $params
 ```
 
-If this takes too long during the workshop, skip it. Your system should still work with no-auth sources and clearly state that Ticketmaster was not used.
+If this takes too long during the workshop, skip it.
+Your system should still work with no-auth sources and clearly state that Ticketmaster was not used.
 
 Non-developer shortcut:
 
-```text
-I have a Ticketmaster API key stored as TICKETMASTER_API_KEY.
-Help me test whether it works for Berlin events in the next 90 days.
-Explain each command before running it.
-```
+> I have a Ticketmaster API key stored as TICKETMASTER_API_KEY.
+> Help me test whether it works for Berlin events in the next 90 days.
+> Explain each command before running it.
 
 ## 9. Build An Agentic System
 
 Now build an agentic system that can autonomously create a grounded future-event demand report.
 
-There is no perfect number of skills or agents. Part of the exercise is to experiment with the design and discover what actually helps.
+There is no perfect number of skills or agents.
+Part of the exercise is to experiment with the design and discover what actually helps.
 
 Recommended starting point:
 
@@ -651,21 +656,17 @@ Experiment with questions like:
 
 Example prompt:
 
-```text
-Use our agents and skills to find upcoming public events in Europe
-in the next 90 days that may deserve attention from an airline demand analyst.
-Focus on events that could plausibly affect flights booked or taken.
-Save a grounded markdown report to outputs/event-demand-report.md.
-Include sources, confidence, and limitations.
-```
+> Use our agents and skills to find upcoming public events in Europe
+> in the next 90 days that may deserve attention from an airline demand analyst.
+> Focus on events that could plausibly affect flights booked or taken.
+> Save a grounded markdown report to `outputs/event-demand-report.md`.
+> Include sources, confidence, and limitations.
 
 If you are not sure what to build, start with this:
 
-```text
-Help our group design a simple agentic system.
-We want one lead agent and two skills.
-Ask us three short questions, then create the first draft files.
-```
+> Help our group design a simple agentic system.
+> We want one lead agent and two skills.
+> Ask us three short questions, then create the first draft files.
 
 If your team is faster, extend the system:
 
@@ -689,15 +690,11 @@ Before you are done, your report should include:
 
 Use cautious language:
 
-```text
-This is a public demand signal, not a booking forecast.
-```
+> This is a public demand signal, not a booking forecast.
 
 Avoid:
 
-```text
-This proves bookings will increase.
-```
+> This proves bookings will increase.
 
 ## 11. Useful Commands
 
@@ -706,13 +703,19 @@ Run a specific agent in prompt mode:
 macOS / Linux:
 
 ```bash
-copilot --agent poet -p "Write a 4-line poem about clean data." --allow-all-tools --silent
+copilot --agent poet \
+  -p "Write a 4-line poem about clean data." \
+  --allow-all-tools \
+  --silent
 ```
 
 Windows PowerShell:
 
 ```powershell
-copilot --agent poet -p "Write a 4-line poem about clean data." --allow-all-tools --silent
+copilot --agent poet `
+  -p "Write a 4-line poem about clean data." `
+  --allow-all-tools `
+  --silent
 ```
 
 Run from this repo explicitly:
@@ -720,13 +723,21 @@ Run from this repo explicitly:
 macOS / Linux:
 
 ```bash
-copilot -C . --agent poet -p "Write a 4-line poem about clean data." --allow-all-tools --silent
+copilot -C . \
+  --agent poet \
+  -p "Write a 4-line poem about clean data." \
+  --allow-all-tools \
+  --silent
 ```
 
 Windows PowerShell:
 
 ```powershell
-copilot -C . --agent poet -p "Write a 4-line poem about clean data." --allow-all-tools --silent
+copilot -C . `
+  --agent poet `
+  -p "Write a 4-line poem about clean data." `
+  --allow-all-tools `
+  --silent
 ```
 
 Start interactively:
@@ -747,20 +758,12 @@ Inspect what is loaded:
 
 Try one of these prompts:
 
-```text
-Inspect this repository and explain the next smallest step.
-```
+> Inspect this repository and explain the next smallest step.
 
-```text
-Help me improve my agent description so Copilot knows when to use it.
-```
+> Help me improve my agent description so Copilot knows when to use it.
 
-```text
-Review my skill. Is it specific enough for a model to follow?
-```
+> Review my skill. Is it specific enough for a model to follow?
 
-```text
-My report feels too speculative. Help me make the wording more evidence-based.
-```
+> My report feels too speculative. Help me make the wording more evidence-based.
 
 Good agent systems are usually not born perfect. You improve them by making responsibilities clearer.
