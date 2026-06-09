@@ -15,6 +15,28 @@ You will not start by writing an agent framework. You will build with Copilot CL
 
 The README is the main guide. Move through it at your own pace.
 
+## What Is GitHub Copilot CLI?
+
+GitHub Copilot CLI is a chat-based AI assistant that runs in your terminal.
+Instead of only suggesting code inside an editor, it can work with the files in this folder and help execute a workflow.
+
+In this lab, Copilot CLI can:
+
+| Capability | What it means here |
+| --- | --- |
+| Chat | You give it natural-language instructions. |
+| Read files | It can inspect this README, skills, agents, and outputs. |
+| Write files | It can create skills, agents, summaries, and reports. |
+| Run commands | It can call tools such as `curl` when you approve. |
+| Use skills | It can load reusable instructions for specific tasks. |
+| Use agents | It can delegate work to specialist roles. |
+
+Think of it as the **workspace where your agentic system runs**.
+You will design the skills and agents; Copilot CLI will use them to do the work.
+
+Important: Copilot CLI is powerful because it can read files, edit files, and run commands.
+Review what it plans to do, especially before allowing terminal commands or using API keys.
+
 ## Work In Balanced Teams
 
 Form groups of around four people.
