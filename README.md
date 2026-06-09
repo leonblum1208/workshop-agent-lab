@@ -591,31 +591,62 @@ Help me test whether it works for Berlin events in the next 90 days.
 Explain each command before running it.
 ```
 
-## 9. Final Challenge
+## 9. Build An Agentic System
 
-Build an agentic system that can autonomously create a grounded future-event demand report.
+Now build an agentic system that can autonomously create a grounded future-event demand report.
 
-Minimum:
+There is no perfect number of skills or agents. Part of the exercise is to experiment with the design and discover what actually helps.
+
+Recommended starting point:
+
+- **three to five skills**
+- **two to four agents**
+- one final report under `outputs/`
+
+For example, you might build:
+
+```text
+skills:
+  event-search
+  public-attention-signal
+  report-writer
+
+agents:
+  demand-signal-lead
+  evidence-reviewer
+```
+
+Or, if your group wants more specialization:
+
+```text
+skills:
+  ticketmaster-events
+  wikimedia-pageviews
+  holiday-baseline
+  grounded-report-writer
+  evidence-checker
+
+agents:
+  demand-signal-lead
+  event-scout
+  attention-analyst
+  evidence-reviewer
+```
+
+At least:
 
 - create at least **two skills**
 - create at least **one custom agent**
 - generate a report under `outputs/`
 - include evidence, confidence, and limitations
 
-Suggested skills:
+Experiment with questions like:
 
-- event-source-scout
-- public-attention-signal
-- holiday-baseline
-- report-writer
-- evidence-checker
-
-Suggested agents:
-
-- demand-signal-lead
-- event-scout
-- attention-analyst
-- evidence-reviewer
+- Is this better as a skill or an agent?
+- Does this agent have a clear separate responsibility?
+- Are two agents doing the same job?
+- Would one stronger skill be simpler than another agent?
+- Does the lead agent know when to delegate?
 
 Example prompt:
 
@@ -630,7 +661,7 @@ Include sources, confidence, and limitations.
 If you are not sure what to build, start with this:
 
 ```text
-Help our group design a simple agentic system for the final challenge.
+Help our group design a simple agentic system.
 We want one lead agent and two skills.
 Ask us three short questions, then create the first draft files.
 ```
