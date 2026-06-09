@@ -59,6 +59,9 @@ Reusable instructions for doing one thing well, for example "query pageviews" or
 **Agent**
 A named specialist role, for example "event scout" or "evidence reviewer."
 
+**Tool**
+An action Copilot can use to do something in the world, for example read a file, edit a file, run a terminal command, or call an external API.
+
 **Orchestration**
 Letting one lead agent coordinate smaller specialist agents and combine their results.
 
@@ -90,14 +93,28 @@ Examples:
 - evidence reviewer
 - demand-signal lead
 
+A **tool** is an action the system can actually take.
+Skills and agents guide Copilot's behavior.
+Tools let it do things.
+
+Examples:
+
+- read files
+- write files
+- run `curl`
+- call an API
+- use a browser or MCP server
+
 Simple rule:
 
 - Use a **skill** for "how to do this task."
 - Use an **agent** for "who should own this responsibility."
+- Use a **tool** for "what action can the system take?"
 
 For example, an `attention-analyst` agent might use a `wikimedia-pageviews` skill.
 The agent owns the analysis.
 The skill explains how to use that data source.
+The tool is the actual `curl` command or API call.
 
 ## What You Will Build
 
