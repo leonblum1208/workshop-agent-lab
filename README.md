@@ -593,6 +593,43 @@ Ask Copilot to help, but make it show sources and tradeoffs:
 
 Do not build yet. First compare options with your group.
 
+## Optional: Enrich With Internal Data
+
+If your group has internal data you are allowed to use, you can enrich the agentic system with it.
+
+Examples:
+
+- Databricks tables or SQL queries
+- Excel or CSV files
+- internal APIs
+- dashboard exports
+- route, booking, capacity, or historical demand data
+
+This is a great place to create a dedicated skill.
+
+For example:
+
+- `databricks-demand-query`
+- `excel-route-loader`
+- `internal-api-evidence`
+- `booking-baseline-summary`
+
+Rules for internal data:
+
+- only use data you are allowed to access
+- do not commit secrets, tokens, or private data into the repo
+- save readable summaries in the timestamped run folder
+- describe the source and limitation without exposing sensitive details
+- keep raw internal data out of the repo unless you are sure it is allowed
+
+Useful prompt:
+
+> We have an internal Excel export with route-level historical demand.
+> Help us design a skill that reads or summarizes it safely.
+> The skill should save a readable evidence summary,
+> avoid exposing sensitive rows in the final report,
+> and state what internal validation is still needed.
+
 ## 8. Sources We Found Useful
 
 After your own exploration, compare against these:
@@ -779,6 +816,7 @@ If your team is faster, extend the system:
 
 - create an HTML report
 - add a source-specific skill
+- add an internal-data skill for Databricks, Excel, or an internal API
 - add an evidence-review agent
 - build a second agentic system for a problem from your own work
 
