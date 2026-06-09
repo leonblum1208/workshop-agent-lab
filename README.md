@@ -68,6 +68,37 @@ Public data, links, API results, or saved files that support a claim.
 **Grounded report**
 A report that clearly says what was observed, what is assumed, and what is uncertain.
 
+## Skill Or Agent?
+
+A **skill** is a reusable capability.
+It tells Copilot how to do a specific kind of task.
+
+Examples:
+
+- query Ticketmaster
+- summarize findings
+- write a grounded report
+- check evidence quality
+
+An **agent** is a role.
+It tells Copilot who should do a piece of work, what responsibility they own, and what boundaries they should respect.
+
+Examples:
+
+- event scout
+- attention analyst
+- evidence reviewer
+- demand-signal lead
+
+Simple rule:
+
+- Use a **skill** for "how to do this task."
+- Use an **agent** for "who should own this responsibility."
+
+For example, an `attention-analyst` agent might use a `wikimedia-pageviews` skill.
+The agent owns the analysis.
+The skill explains how to use that data source.
+
 ## What You Will Build
 
 By the end, your repo should contain:
@@ -216,6 +247,10 @@ Write the first skill yourself. This is the moment where you learn what a skill 
 Skills are best for repeatable instructions that should only appear when relevant.
 They are not global behavior rules. Global rules belong in `.github/copilot-instructions.md`.
 
+Think of a skill as a reusable method or checklist.
+It usually does not own the whole problem.
+It helps an agent or the main Copilot session do one task consistently.
+
 Good skills are:
 
 - **narrow**: one job, not five
@@ -306,6 +341,9 @@ Create an agent either through the CLI or by writing a file.
 
 Agents are best for specialist roles.
 A good agent has a clear job, clear boundaries, and a clear moment when it should be used.
+
+Think of an agent as a teammate with a job title.
+It can use skills, tools, and context to complete its part of the work.
 
 Use an agent when you want:
 
