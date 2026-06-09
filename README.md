@@ -37,6 +37,47 @@ You will design the skills and agents; Copilot CLI will use them to do the work.
 Important: Copilot CLI is powerful because it can read files, edit files, and run commands.
 Review what it plans to do, especially before allowing terminal commands or using API keys.
 
+## Which Copilot Mode Should You Use?
+
+GitHub Copilot CLI has several ways of working.
+For this workshop, start with the mode that keeps your group in control.
+
+| Mode | How to use it in this lab |
+| --- | --- |
+| **Interactive** | Default for everyone. Chat step by step while learning, exploring, and reviewing outputs. |
+| **Plan** | Use before larger changes. Ask Copilot to reason first, then approve or edit the plan. |
+| **Prompt mode** | Useful for small repeatable checks with `-p`, but not the main workshop flow. |
+| **Autopilot** | Try later. Best for clear tasks in trusted folders after manual checkpoints. |
+| **Delegate** | Skip for this lab unless a facilitator suggests using the GitHub cloud agent. |
+
+Recommended workflow for this lab:
+
+1. Use **interactive mode** while learning and discussing as a group.
+2. Use **plan mode** before creating or changing skills and agents.
+3. Return to **interactive mode** to review what Copilot created.
+4. Use **autopilot** only after your group understands the task,
+   trusts the folder, and knows where outputs should be saved.
+
+Good beginner prompt:
+
+> Switch to plan mode for this task.
+> Help us design one skill and one agent for finding public event signals.
+> Ask clarifying questions first.
+> Do not edit files until we approve the plan.
+
+Useful mode commands:
+
+```text
+/plan       ask Copilot to plan before acting
+/autopilot  toggle autonomous local work
+/delegate   hand work to the GitHub cloud agent
+```
+
+Safety rule:
+
+Do not use autopilot with API keys, internal data, or broad permissions until your group
+has agreed what Copilot is allowed to read, write, and run.
+
 ## Work In Balanced Teams
 
 Form groups of around four people.
@@ -548,9 +589,9 @@ Common mistakes:
 
 Useful references:
 
-- [GitHub: adding agent skills](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills)
-- [GitHub: creating custom agents](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-custom-agents-for-cli)
-- [GitHub: comparing customization features](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/comparing-cli-features)
+- Skills: [GitHub docs: adding agent skills](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills)
+- Agents: [GitHub docs: creating custom agents](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-custom-agents-for-cli)
+- Comparison: [GitHub docs: comparing CLI features](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/comparing-cli-features)
 
 ## 7. Explore Data Sources Yourself
 
