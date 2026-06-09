@@ -39,44 +39,34 @@ Review what it plans to do, especially before allowing terminal commands or usin
 
 ## Which Copilot Mode Should You Use?
 
-GitHub Copilot CLI has several ways of working.
-For this workshop, start with the mode that keeps your group in control.
+In this lab, Copilot CLI has two jobs:
 
-| Mode | How to use it in this lab |
+1. help you **build** skills and agents
+2. help you **run** the agentic system you built
+
+That can feel confusing at first, because both happen in the same terminal.
+Use the mode based on what you are trying to do.
+
+| Mode | Use it for |
 | --- | --- |
-| **Interactive** | Default for everyone. Chat step by step while learning, exploring, and reviewing outputs. |
-| **Plan** | Use before larger changes. Ask Copilot to reason first, then approve or edit the plan. |
-| **Prompt mode** | Useful for small repeatable checks with `-p`, but not the main workshop flow. |
-| **Autopilot** | Try later. Best for clear tasks in trusted folders after manual checkpoints. |
-| **Delegate** | Skip for this lab unless a facilitator suggests using the GitHub cloud agent. |
+| **Interactive** | Default. Run your agentic system step by step and stay in control. |
+| **Plan** | Ask Copilot to think through a design before changing files. |
+| **Autopilot** | Let Copilot continue working more independently on a clear task. |
 
-Recommended workflow for this lab:
+Recommendation for this workshop:
 
-1. Use **interactive mode** while learning and discussing as a group.
-2. Use **plan mode** before creating or changing skills and agents.
-3. Return to **interactive mode** to review what Copilot created.
-4. Use **autopilot** only after your group understands the task,
-   trusts the folder, and knows where outputs should be saved.
+Use **interactive mode** as the default, especially while your group is still learning.
+It is the easiest way to inspect evidence, discuss results, and correct the system.
 
-Good beginner prompt:
+Use **autopilot** later if your agentic system is already clear and you want Copilot
+to run the full workflow more independently.
 
-> Switch to plan mode for this task.
-> Help us design one skill and one agent for finding public event signals.
-> Ask clarifying questions first.
-> Do not edit files until we approve the plan.
-
-Useful mode commands:
+Useful commands:
 
 ```text
-/plan       ask Copilot to plan before acting
-/autopilot  toggle autonomous local work
-/delegate   hand work to the GitHub cloud agent
+/plan       plan before changing files
+/autopilot  toggle more autonomous work
 ```
-
-Safety rule:
-
-Do not use autopilot with API keys, internal data, or broad permissions until your group
-has agreed what Copilot is allowed to read, write, and run.
 
 ## Work In Balanced Teams
 
