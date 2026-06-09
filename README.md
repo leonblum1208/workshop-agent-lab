@@ -735,7 +735,66 @@ Non-developer shortcut:
 > Help me test whether it works for Berlin events in the next 90 days.
 > Explain each command before running it.
 
-## 9. Build An Agentic System
+## 9. Choose A Capability Direction
+
+You do not all need to build the same thing.
+Choose a capability that your group finds interesting.
+
+Here are possible directions.
+
+### Capability A: Future Event Watchlist
+
+Build a system that finds the top three upcoming public events in Europe to watch over the next three months.
+
+The system should answer:
+
+- what are the events?
+- where and when are they happening?
+- what public evidence supports their relevance?
+- why might they matter for travel demand?
+- what confidence level should a human analyst assign?
+
+This is the recommended default direction.
+
+### Capability B: Historical Backtest
+
+Build a system that looks at a known past event and asks:
+
+> What public signals were visible before the event happened?
+
+Examples could include a major concert tour, sports tournament, festival, trade fair, or large city event.
+
+The system should answer:
+
+- what signals were visible 90, 60, or 30 days before?
+- which sources would have helped?
+- what would the agent have flagged?
+- what internal data would be needed to confirm whether demand actually changed?
+
+This direction is useful for learning how to validate an agent instead of only trusting its future recommendations.
+
+### Capability C: Public Signals Plus Internal Context
+
+Build a system that combines public event signals with allowed internal or mock internal data.
+
+Examples:
+
+- route or city relevance
+- historical demand baselines
+- capacity context
+- Excel, CSV, Databricks, or internal API summaries
+
+The system should answer:
+
+- how does internal context change the interpretation?
+- which public signals still look relevant?
+- which signals become less important?
+- what should a human analyst check next?
+
+Use this direction only with data you are allowed to access and summarize.
+Do not commit secrets or sensitive data.
+
+## 10. Build An Agentic System
 
 Now build an agentic system that can autonomously create a grounded future-event demand report.
 
@@ -820,7 +879,7 @@ If your team is faster, extend the system:
 - add an evidence-review agent
 - build a second agentic system for a problem from your own work
 
-## 10. Report Checklist
+## 11. Report Checklist
 
 Before you are done, your report should include:
 
@@ -841,7 +900,7 @@ Avoid:
 
 > This proves bookings will increase.
 
-## 11. Useful Commands
+## 12. Useful Commands
 
 Run a specific agent in prompt mode:
 
@@ -899,7 +958,7 @@ Inspect what is loaded:
 /agent
 ```
 
-## 12. When You Get Stuck
+## 13. When You Get Stuck
 
 Try one of these prompts:
 
