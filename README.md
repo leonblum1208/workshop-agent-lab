@@ -577,6 +577,7 @@ $params = @{
 }
 
 Invoke-RestMethod `
+  -Method Get `
   -Uri "https://app.ticketmaster.com/discovery/v2/events.json" `
   -Body $params
 ```
