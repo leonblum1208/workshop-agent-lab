@@ -13,6 +13,17 @@ You will not start by writing an agent framework. You will build with Copilot CL
 
 The README is the main guide. Move through it at your own pace.
 
+## Work In Balanced Teams
+
+Form groups of around four people.
+
+Aim for a mix of:
+
+- people comfortable with terminals, files, or APIs
+- people closer to analytics, business, product, or domain questions
+
+This lab works best when one person can help with setup while others challenge the business relevance, data quality, and report wording. You are building an agentic system, not just a technical demo.
+
 ## License
 
 This workshop material is released under the MIT License. See [LICENSE](LICENSE).
@@ -502,11 +513,13 @@ News/event signal for unusual public attention, disruptions, protests, announcem
 
 You do not need all five. Pick a small set and make it work.
 
-### Optional: Ticketmaster API Key
+### Recommended: Ticketmaster API Key
 
-Ticketmaster is useful for upcoming events, but it may require an API key.
+Ticketmaster is recommended for this challenge because it provides essential information about future public events: event names, dates, cities, venues, categories, and links.
 
-This is optional. If account creation or API keys are annoying, skip Ticketmaster and use no-auth sources.
+Try to get Ticketmaster working as a skill or tool in your group. One more technical colleague can create the developer app and share the key within the group for the workshop. Do not commit the key into any file.
+
+If Ticketmaster setup is blocked, continue with no-auth sources and state the limitation in your report.
 
 To get one:
 
