@@ -50,69 +50,30 @@ Skills and agents are mostly structured text, not software engineering.
 
 ## Tiny Glossary
 
-**Copilot CLI**
-The tool you chat with in the terminal. It can read files, create files, run commands, and use agents.
-
-**Skill**
-Reusable instructions for doing one thing well, for example "query pageviews" or "write a grounded report."
-
-**Agent**
-A named specialist role, for example "event scout" or "evidence reviewer."
-
-**Tool**
-An action Copilot can use to do something in the world, for example read a file, edit a file, run a terminal command, or call an external API.
-
-**Orchestration**
-Letting one lead agent coordinate smaller specialist agents and combine their results.
-
-**Evidence**
-Public data, links, API results, or saved files that support a claim.
-
-**Evidence trail**
-A readable folder of files showing what the system fetched, summarized, and used for a report.
-
-**Grounded report**
-A report that clearly says what was observed, what is assumed, and what is uncertain.
+| Term | Short meaning |
+| --- | --- |
+| **Copilot CLI** | The terminal chat tool that can read files, create files, run commands, and use agents. |
+| **Skill** | Reusable instructions for doing one task well. |
+| **Agent** | A named specialist role with a responsibility. |
+| **Tool** | An action Copilot can take, such as reading a file, editing a file, running `curl`, or calling an API. |
+| **Orchestration** | One lead agent coordinating smaller specialist agents and combining their results. |
+| **Evidence** | Public data, links, API results, or saved files that support a claim. |
+| **Evidence trail** | A readable folder showing what the system fetched, summarized, and used. |
+| **Grounded report** | A report that separates observations, assumptions, and uncertainty. |
 
 ## Skill Or Agent?
 
-A **skill** is a reusable capability.
-It tells Copilot how to do a specific kind of task.
-
-Examples:
-
-- query Ticketmaster
-- summarize findings
-- write a grounded report
-- check evidence quality
-
-An **agent** is a role.
-It tells Copilot who should do a piece of work, what responsibility they own, and what boundaries they should respect.
-
-Examples:
-
-- event scout
-- attention analyst
-- evidence reviewer
-- demand-signal lead
-
-A **tool** is an action the system can actually take.
-Skills and agents guide Copilot's behavior.
-Tools let it do things.
-
-Examples:
-
-- read files
-- write files
-- run `curl`
-- call an API
-- use a browser or MCP server
+| Concept | Use it for | Example |
+| --- | --- | --- |
+| **Skill** | How to do a repeatable task. | `wikimedia-pageviews`, `report-writer` |
+| **Agent** | Who owns a responsibility. | `attention-analyst`, `evidence-reviewer` |
+| **Tool** | What action the system can take. | `curl`, file read/write, API call |
 
 Simple rule:
 
-- Use a **skill** for "how to do this task."
-- Use an **agent** for "who should own this responsibility."
-- Use a **tool** for "what action can the system take?"
+- **Skill**: how should this task be done?
+- **Agent**: who should own this part of the work?
+- **Tool**: what action can the system take?
 
 For example, an `attention-analyst` agent might use a `wikimedia-pageviews` skill.
 The agent owns the analysis.
