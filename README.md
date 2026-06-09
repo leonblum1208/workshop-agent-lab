@@ -188,33 +188,49 @@ The files are plain Markdown. Open them and inspect how little structure is need
 
 ## 4. Create Your First Skill
 
-You have two options. The easiest path is to ask Copilot to create the skill for you.
+Write the first skill yourself. This is the moment where you learn what a skill actually is.
 
-In Copilot CLI, paste:
-
-```text
-Create a new skill called concise-summarizer.
-It should help summarize long findings into five business-readable bullets.
-Put it under .github/skills/concise-summarizer/SKILL.md.
-Keep it beginner-friendly.
-```
-
-Then ask:
+Create a new folder and file:
 
 ```text
-Show me the skill file you created and explain each section in plain English.
+.github/skills/concise-summarizer/SKILL.md
 ```
 
-If you prefer to edit files directly, create a new folder:
-
-```text
-.github/skills/<your-skill-name>/SKILL.md
-```
-
-You can copy:
+You can copy the structure from:
 
 ```text
 templates/skill-template.md
+```
+
+Write a simple skill for summarizing long findings into five business-readable bullets.
+
+Minimum content:
+
+```text
+---
+name: concise-summarizer
+description: Use this skill to summarize long findings into five business-readable bullets.
+license: MIT
+---
+
+# Concise Summarizer
+
+Use this skill when ...
+
+Rules:
+
+- ...
+- ...
+- ...
+```
+
+After you wrote it, ask Copilot to review it:
+
+```text
+Review my concise-summarizer skill.
+Is it clear when to use it?
+Would you follow the rules correctly?
+Suggest improvements, but do not edit the file yet.
 ```
 
 Restart Copilot CLI after creating skills or agents so they load reliably:
