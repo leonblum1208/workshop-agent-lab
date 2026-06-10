@@ -15,6 +15,10 @@ You will not start by writing an agent framework. You will build with Copilot CL
 
 The README is the main guide. Move through it at your own pace.
 
+For this version of the lab, use live public sources, public APIs,
+or allowed internal data.
+Do not rely on prebuilt demo event data unless a facilitator explicitly adds it later.
+
 ## What Is GitHub Copilot CLI?
 
 GitHub Copilot CLI is a chat-based AI assistant that runs in your terminal.
@@ -604,6 +608,20 @@ Ask Copilot to help, but make it show sources and tradeoffs:
 > Help me find public data sources for upcoming European events that may affect flight demand.
 > Prioritize sources I can query without authentication.
 > Give me source, signal type, access method, and limitation.
+
+You can also use Copilot CLI research mode for source discovery:
+
+```text
+/research Find public data sources for upcoming European events that could affect air travel demand.
+Focus on sources with dates, locations, event categories, and usable access.
+Return source links, access method, strengths, and limitations.
+```
+
+Use research mode to **find and compare sources**, not to skip the lab.
+Afterwards, turn the best source ideas into your own skills.
+
+For now, do not use hardcoded demo event data.
+The default path is live public sources, public APIs, or allowed internal data.
 
 Do not build yet. First compare options with your group.
 
