@@ -72,6 +72,39 @@ Useful commands:
 /autopilot  toggle more autonomous work
 ```
 
+## Which Model Should You Use?
+
+Use a fast, low-cost model by default.
+This lab is mostly about designing skills, agents, evidence trails, and reports.
+You do not need the strongest model for every step.
+
+| Task | Recommended model style |
+| --- | --- |
+| Writing skills and agents | Fast, cheap model |
+| Fetching and summarizing evidence | Fast, cheap model |
+| Reviewing weak evidence | Stronger model if available |
+| Final report polish | Stronger model if available |
+
+Good default:
+
+- use a Haiku-class model or a GPT mini-class model if your setup offers one
+- use a stronger model only when the output quality clearly needs it
+
+If you use the LiteLLM fallback, a facilitator may provide a model name.
+Set it with:
+
+macOS / Linux:
+
+```bash
+export COPILOT_MODEL="<MODEL_NAME>"
+```
+
+Windows PowerShell:
+
+```powershell
+$env:COPILOT_MODEL = "<MODEL_NAME>"
+```
+
 ## Work In Balanced Teams
 
 Form groups of around four people.
