@@ -248,6 +248,7 @@ Then try:
 ```
 
 These commands show what Copilot loaded from the repository.
+If one of these commands opens a view or menu, press `Esc` to return to the chat.
 
 ## 2. Authenticate
 
@@ -435,7 +436,12 @@ Friendly CLI flow:
 /agent
 ```
 
-Choose **Create new agent**. You can create it in the project so your team can share it:
+In the agent menu, press `n` to create a new agent.
+Then choose **Create manually**.
+This is important for the lab: you should write the agent instructions yourself,
+because that is where the learning happens.
+
+Create it in the project so your team can share it:
 
 ```text
 .github/agents/
