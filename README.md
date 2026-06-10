@@ -433,6 +433,54 @@ Agent-writing tips:
 - Tell it what output to return.
 - Start with fewer tools. Add more only when the agent needs them.
 
+### Agent Description Clinic
+
+The `description` is more important than it looks.
+Copilot uses it to decide when the agent should be suggested or used.
+
+Use this pattern:
+
+| Part | Question to answer |
+| --- | --- |
+| Task | What does this agent do? |
+| Situation | When should someone use it? |
+| Trigger words | What might a user ask for? |
+| Boundary | What should this agent not do? |
+
+Weak:
+
+> Analyzes events and demand.
+
+Stronger:
+
+> Use this agent to identify upcoming public events in European cities
+> that may create air-travel demand signals.
+> Trigger phrases: event watchlist, demand signal, upcoming city events.
+> Do not claim that public data proves bookings.
+
+In your group, compare two descriptions.
+Which one would Copilot understand more reliably?
+
+### Choose Tools Deliberately
+
+An agent should only get tools it needs for its responsibility.
+Start small, then add more when the workflow proves it needs them.
+
+| Tool capability | Useful when the agent needs to... |
+| --- | --- |
+| Read files | Inspect skills, evidence, or prior reports. |
+| Edit files | Save reports, summaries, or evidence notes. |
+| Search locally | Find files or text inside the repo. |
+| Run commands | Query APIs with `curl` or process local files. |
+| Use web access | Discover or inspect public online sources. |
+| Use other agents | Delegate a focused subtask to a specialist. |
+
+Before adding a tool, ask:
+
+- What action does this agent need to take?
+- Could a narrower skill be enough?
+- What could go wrong if this tool is used carelessly?
+
 For example:
 
 ```text
@@ -911,7 +959,53 @@ If your team is faster, extend the system:
 - add an evidence-review agent
 - build a second agentic system for a problem from your own work
 
-## 11. Report Checklist
+### Run, Diagnose, Improve
+
+Your first run will probably not be perfect.
+That is the point.
+Use the first output to improve your skills and agents.
+
+After each run, ask:
+
+| What to inspect | What good looks like |
+| --- | --- |
+| Evidence trail | Raw results and readable summaries were saved. |
+| Source quality | Claims link back to public sources or saved evidence. |
+| Report format | The report follows the structure your team requested. |
+| Confidence | The system explains uncertainty instead of hiding it. |
+| Scope | The agent did not invent bookings or flight volumes. |
+
+Common fixes:
+
+| Problem | Possible fix |
+| --- | --- |
+| Events are too small or irrelevant. | Add clearer inclusion criteria to the event-search skill. |
+| Sources are missing. | Tell the agent to save links, queries, and retrieval times. |
+| Report is too speculative. | Strengthen the evidence-reviewer agent. |
+| Output format drifts. | Add exact headings or table columns to the report skill. |
+| Agents overlap too much. | Merge roles or make responsibilities sharper. |
+
+Useful prompt:
+
+> Review our latest run folder.
+> Find the weakest part of the agentic system.
+> Suggest three changes to our skills or agents before we run it again.
+
+## 11. Theory To Practice Map
+
+Use this table to connect the morning concepts to what you built.
+
+| Concept | Where it appears in this repo |
+| --- | --- |
+| Prompting | The wording inside `SKILL.md` and `.agent.md` files. |
+| Tools | The actions Copilot can take: read, edit, search, run commands, use web access. |
+| Skills | Reusable task instructions under `.github/skills/`. |
+| Agents | Specialist roles under `.github/agents/`. |
+| Orchestration | The lead session or lead agent coordinating skills and agents. |
+| RAG | Retrieved public or internal evidence added to the final reasoning. |
+| Evaluation | The evidence-review step and the run-diagnose-improve loop. |
+
+## 12. Report Checklist
 
 Before you are done, your report should include:
 
@@ -932,7 +1026,7 @@ Avoid:
 
 > This proves bookings will increase.
 
-## 12. Useful Commands
+## 13. Useful Commands
 
 Run a specific agent in prompt mode:
 
@@ -990,7 +1084,7 @@ Inspect what is loaded:
 /agent
 ```
 
-## 13. When You Get Stuck
+## 14. When You Get Stuck
 
 Try one of these prompts:
 
